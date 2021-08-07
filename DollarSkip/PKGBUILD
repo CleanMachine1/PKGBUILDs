@@ -1,16 +1,19 @@
-pkgname=dollarskip
-pkgver=1.0
-pkgrel=1
-source=(https://github.com/CleanMachine1/DollarSkip/archive/refs/tags/1.0.tar.gz)
+pkgname="dollarskip"
+pkgver="3.0"
+pkgrel="1"
+source=(https://github.com/CleanMachine1/DollarSkip/archive/3.0.tar.gz)
 pkgdesc="Skip the dollar!"
 arch=('any')
 url="https://github.com/CleanMachine1/DollarSkip"
 license=('MIT')
 
-package() {
-    cd "$srcdir/DollarSkip-1.0"
+build() {
+    cd DollarSkip-${pkgver}
     make
-    sudo make install 
 }
 
-sha256sums=('caa93de77de91ae9f97599fe5d9472d72edd7be6ba12c8c388964da75be3b5c5')
+package() {
+    cd DollarSkip-${pkgver} &&
+    install -m 755 -D temp "${pkgdir}/usr/bin/\$" 
+}
+sha256sums=('8826bd814c543566130152e6e2da02b0d43363ca51f5e806e208760918a2531e')
